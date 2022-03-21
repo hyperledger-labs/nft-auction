@@ -1,0 +1,18 @@
+{
+    "name": "Org2",
+    "x-type": "hlfv1",
+    "description": "Connection Profile for an IT People Corporation. Blockchain Platform Network",
+    "version": "1.0.2",
+    "client": {
+        "organization": "org2",
+        "credentialStore": {
+            "path": "/tmp/fabric-client-kv-auction-org2"
+        },
+        "registrar": [
+            {
+                "enrollId": "admin",
+                "enrollSecret": "adminpw"
+            }
+        ]
+    }
+}

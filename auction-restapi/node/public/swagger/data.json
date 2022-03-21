@@ -1,0 +1,1162 @@
+{
+    "info": {
+        "title": "Auction NFT",
+        "version": "1.0",
+        "description": "[Specification JSON](/api-spec)"
+    },
+    "paths": {
+        "/user/register": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Register a User",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "username": {
+                                    "type": "string",
+                                    "example": "sotheby"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User login",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "accessToken": {
+                                    "type": "string",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjQ4MTAwMTMsInVzZXJuYW1lIjoiYWRtaW4iLCJvcmduYW1lIjoib3JnMSIsImlhdCI6MTUyNDQ1MDAxM30.GDeIk8oWd0xP8m7KXMnzMDzpS0uvQY1ZW_egJ4UzQOk"
+                                },
+                                "username": {
+                                    "type": "string",
+                                    "example": "admin"
+                                },
+                                "userType": {
+                                    "type": "string",
+                                    "example": "TRD"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auction/init": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/InitAuction"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Add Nft for auction",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "auctionID": {
+                                    "type": "string",
+                                    "example": "4444db58-3d13-4bb8-94fd-75254c2e287e"
+                                },
+                                "docType": {
+                                    "type": "string",
+                                    "example": "AUCREQ"
+                                },
+                                "nftId": {
+                                    "type": "string",
+                                    "example": "c319b73ebed49a71e900"
+                                },
+                                "aesKey": {
+                                    "type": "string",
+                                    "example": "x94hix2Q/8a0eBjzBAdVXndg5vyS1kMSIDVgAKObkOo="
+                                },
+                                "auctionHouseID": {
+                                    "type": "string",
+                                    "example": "sotheby"
+                                },
+                                "sellerID": {
+                                    "type": "string",
+                                    "example": "ashleyhart"
+                                },
+                                "itemImage": {
+                                    "type": "string"
+                                },
+                                "itemImageName": {
+                                    "type": "string"
+                                },
+                                "requestDate": {
+                                    "type": "string",
+                                    "example": "04012018"
+                                },
+                                "reservePrice": {
+                                    "type": "string",
+                                    "example": "100000"
+                                },
+                                "buyItNowPrice": {
+                                    "type": "string",
+                                    "example": "300000"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "example": "INIT"
+                                },
+                                "openDate": {
+                                    "type": "string",
+                                    "example": "2018-04-22 22:20:25"
+                                },
+                                "closeDate": {
+                                    "type": "string",
+                                    "example": "2018-05-12 12:00:00"
+                                },
+                                "timeStamp": {
+                                    "type": "string",
+                                    "example": "2018-04-22T22:20:25-04:00"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all the Nfts added to auction list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "auctionID": {
+                                        "type": "string"
+                                    },
+                                    "docType": {
+                                        "type": "string"
+                                    },
+                                    "itemImageName": {
+                                        "type": "string"
+                                    },
+                                    "sellerID": {
+                                        "type": "string"
+                                    },
+                                    "buyItNowPrice": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "timeStamp": {
+                                        "type": "string"
+                                    },
+                                    "nftId": {
+                                        "type": "string"
+                                    },
+                                    "auctionHouseID": {
+                                        "type": "string"
+                                    },
+                                    "requestDate": {
+                                        "type": "string"
+                                    },
+                                    "reservePrice": {
+                                        "type": "string"
+                                    },
+                                    "openDate": {
+                                        "type": "string"
+                                    },
+                                    "closeDate": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auction/open": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OpenAuction"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Open auction for the Nft",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "example": "200"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Succesfully opened Auction for Bids"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all the items open to auction",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "auctionID": {
+                                        "type": "string"
+                                    },
+                                    "docType": {
+                                        "type": "string"
+                                    },
+                                    "itemImageName": {
+                                        "type": "string"
+                                    },
+                                    "sellerID": {
+                                        "type": "string"
+                                    },
+                                    "buyItNowPrice": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "timeStamp": {
+                                        "type": "string"
+                                    },
+                                    "nftId": {
+                                        "type": "string"
+                                    },
+                                    "auctionHouseID": {
+                                        "type": "string"
+                                    },
+                                    "requestDate": {
+                                        "type": "string"
+                                    },
+                                    "reservePrice": {
+                                        "type": "string"
+                                    },
+                                    "openDate": {
+                                        "type": "string"
+                                    },
+                                    "closeDate": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "auctionID",
+                                    "docType",
+                                    "itemID",
+                                    "aesKey",
+                                    "auctionHouseID",
+                                    "sellerID",
+                                    "requestDate",
+                                    "reservePrice",
+                                    "buyItNowPrice",
+                                    "status",
+                                    "openDate",
+                                    "closeDate",
+                                    "timeStamp"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auction/close": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Close auction",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "auctionID": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "auctionID"
+                            ]
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post Bid",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "example": "200"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Auction is closed successfully !!!."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auction/:auctionID": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get auction by ID",
+                        "schema": {
+                            "type": "object",
+                                "properties": {
+                                    "auctionID": {
+                                        "type": "string"
+                                    },
+                                    "docType": {
+                                        "type": "string"
+                                    },
+                                    "itemImageName": {
+                                        "type": "string"
+                                    },
+                                    "sellerID": {
+                                        "type": "string"
+                                    },
+                                    "buyItNowPrice": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "timeStamp": {
+                                        "type": "string"
+                                    },
+                                    "nftId": {
+                                        "type": "string"
+                                    },
+                                    "auctionHouseID": {
+                                        "type": "string"
+                                    },
+                                    "requestDate": {
+                                        "type": "string"
+                                    },
+                                    "reservePrice": {
+                                        "type": "string"
+                                    },
+                                    "openDate": {
+                                        "type": "string"
+                                    },
+                                    "closeDate": {
+                                        "type": "string"
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        },
+        "/bid": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Post Bid",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "auctionID": {
+                                    "type": "string"
+                                },
+                                "bidPrice": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "auctionID",
+                                "bidPrice"
+                            ]
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post Bid",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "example": "200"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Successfully Recorded the Bid"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bid/:bidID": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the bid details by id",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseBid"
+                        }
+                    }
+                }
+            }
+        },
+        "/bid/high/:auctionID": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the highest bid for an auction",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseBid"
+                        }
+                    }
+                }
+            }
+        },
+        "/bid/auction/:auctionID": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the list of bids for an auction",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseBid"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bid/buynow": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Post Bid",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "auctionID": {
+                                    "type": "string"
+                                },
+                                "bidPrice": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "auctionID",
+                                "bidPrice"
+                            ]
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Buy it now",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "example": "200"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Transfer has been successfully initiated!!!!"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/nft/mint": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Item"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create Item",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "item": {
+                                    "$ref": "#/definitions/ResponseItem"
+                                },
+                                "nfts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ResponseNft"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/nft/:nftId": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the Nft details by ID",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "item": {
+                                    "$ref": "#/definitions/ResponseItem"
+                                },
+                                "nft": {
+                                    "$ref": "#/definitions/ResponseNft"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/nft/me": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all the nfts owned by User",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "item": {
+                                        "$ref": "#/definitions/ResponseItem"
+                                    },
+                                    "nfts": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "docType": {
+                                                    "type": "string"
+                                                },
+                                                "nftId": {
+                                                    "type": "string"
+                                                },
+                                                "nftStatus": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "symbol": {
+                                                    "type": "string"
+                                                },
+                                                "itemID": {
+                                                    "type": "string"
+                                                },
+                                                "price": {
+                                                    "type": "string"
+                                                },
+                                                "itemCpyNum": {
+                                                    "type": "string"
+                                                },
+                                                "aesKey": {
+                                                    "type": "string"
+                                                },
+                                                "owner": {
+                                                    "type": "string"
+                                                },
+                                                "timeStamp": {
+                                                    "type": "string"
+                                                },
+                                                "chainCodeId": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/nft/transfer": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request access",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nftId": {
+                                    "type": "string"
+                                },
+                                "ownerAESKey": {
+                                    "type": "string"
+                                },
+                                "transferee": {
+                                    "type": "string"
+                                },
+                                "itemImage": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transfer Nft",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "docType": {
+                                    "type": "string"
+                                },
+                                "nftId": {
+                                    "type": "string"
+                                },
+                                "nftStatus": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "symbol": {
+                                    "type": "string"
+                                },
+                                "itemID": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "string"
+                                },
+                                "itemCpyNum": {
+                                    "type": "string"
+                                },
+                                "aesKey": {
+                                    "type": "string"
+                                },
+                                "owner": {
+                                    "type": "string"
+                                },
+                                "timeStamp": {
+                                    "type": "string"
+                                },
+                                "chainCodeId": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/nft/:nftId/history": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the history of a Nft",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseNft"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Login": {
+            "required": [
+                "username",
+                "password",
+                "org"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "org": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "userID",
+                "name",
+                "password",
+                "userType",
+                "address",
+                "phone",
+                "email",
+                "paymentID"
+            ],
+            "properties": {
+                "userID": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "userType": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "paymentID": {
+                    "type": "string"
+                }
+            }
+        },
+        "Item": {
+            "required": [
+                "itemDescription",
+                "itemDetail",
+                "numberOfCopies",
+                "itemDate",
+                "itemType",
+                "itemSubject",
+                "itemHash",
+                "itemHashSignature",
+                "itemMedia",
+                "itemSize",
+                "itemImageType",
+                "itemBasePrice",
+                "itemImage"
+            ],
+            "properties": {
+                "itemDescription": {
+                    "type": "string"
+                },
+                "itemDetail": {
+                    "type": "string"
+                },
+                "numberOfCopies": {
+                    "type": "string"
+                },
+                "itemDate": {
+                    "type": "string"
+                },
+                "itemType": {
+                    "type": "string"
+                },
+                "itemSubject": {
+                    "type": "string"
+                },
+                "itemMedia": {
+                    "type": "string"
+                },
+                "itemSize": {
+                    "type": "string"
+                },
+                "itemImageType": {
+                    "type": "string"
+                },
+                "itemBasePrice": {
+                    "type": "string"
+                },
+                "itemImage": {
+                    "type": "string"
+                }
+            }
+        },
+        "InitAuction": {
+            "required": [
+                "nftId",
+                "aesKey",
+                "auctionHouseID",
+                "requestDate",
+                "reservePrice",
+                "buyItNowPrice"
+            ],
+            "properties": {
+                "nftId": {
+                    "type": "string"
+                },
+                "aesKey": {
+                    "type": "string"
+                },
+                "auctionHouseID": {
+                    "type": "string"
+                },
+                "requestDate": {
+                    "type": "string"
+                },
+                "reservePrice": {
+                    "type": "string"
+                },
+                "buyItNowPrice": {
+                    "type": "string"
+                }
+            }
+        },
+        "OpenAuction": {
+            "required": [
+                "auctionRequestID",
+                "duration",
+                "auctionStartDateTime"
+            ],
+            "properties": {
+                "auctionRequestID": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "string"
+                },
+                "auctionStartDateTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseItem": {
+            "type": "object",
+            "properties": {
+                "itemID": {
+                    "type": "string",
+                    "example": "c7346391-e1c6-443b-8df3-043e5f6e4699"
+                },
+                "itemDescription": {
+                    "type": "string",
+                    "example": "The Mona Lisa is a half-length portrait painting by the Italian Renaissance artist Leonardo da Vinci"
+                },
+                "itemDetail": {
+                    "type": "string",
+                    "example": "Monalisa"
+                },
+                "itemDate": {
+                    "type": "string",
+                    "example": "2018-04-23 12:23:13"
+                },
+                "itemType": {
+                    "type": "string",
+                    "example": "Original"
+                },
+                "itemSubject": {
+                    "type": "string",
+                    "example": "Portrait"
+                },
+                "itemHash": {
+                    "type": "string"
+                },
+                "itemHashSignature": {
+                    "type": "string"
+                },
+                "itemMedia": {
+                    "type": "string",
+                    "example": "Canvas"
+                },
+                "itemSize": {
+                    "type": "string",
+                    "example": "15 x 15 in"
+                },
+                "itemImageType": {
+                    "type": "string",
+                    "example": "image/jpeg"
+                },
+                "docType": {
+                    "type": "string",
+                    "example": "ARTINV"
+                },
+                "numberOfCopies": {
+                    "type": "string",
+                    "example": "2"
+                },
+                "itemImageName": {
+                    "type": "string",
+                    "example": "Monalisa.jpeg"
+                },
+                "timeStamp": {
+                    "type": "string",
+                    "example": "2022-02-22 11:57:55"
+                },
+                "objectCat": {
+                    "type": "string",
+                    "example": "ART"
+                }
+            }
+        },
+        "ResponseNft": {
+            "type": "object",
+            "properties": {
+                "docType": {
+                    "type": "string"
+                },
+                "nftId": {
+                    "type": "string"
+                },
+                "nftStatus": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "itemID": {
+                    "type": "string"
+                },
+                "itemImage": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "itemCpyNum": {
+                    "type": "string"
+                },
+                "aesKey": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "timeStamp": {
+                    "type": "string"
+                },
+                "chainCodeId": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseBid": {
+            "type": "object",
+            "properties": {
+                "auctionID": {
+                    "type": "string"
+                },
+                "docType": {
+                    "type": "string"
+                },
+                "bidID": {
+                    "type": "string"
+                },
+                "nftId": {
+                    "type": "string"
+                },
+                "buyerID": {
+                    "type": "string"
+                },
+                "bidPrice": {
+                    "type": "string"
+                },
+                "bidTime": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "swagger": "2.0"
+}

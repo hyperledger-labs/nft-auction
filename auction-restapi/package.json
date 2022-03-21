@@ -1,0 +1,37 @@
+{
+  "name": "auction-rest-api",
+  "main": "app.js",
+  "description": "Blockchain Rest API",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "cd node && node app.js"
+  },
+  "engines": {
+    "node": ">=12.18.3",
+    "npm": ">=6.14.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "config": "^1.29.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "express-oas-generator": "^0.1.20",
+    "fabric-ca-client": "^2.2.3",
+    "fabric-network": "^2.2.3",
+    "fs-extra": "^10.0.0",
+    "images": "^3.0.1",
+    "jsonwebtoken": "^8.1.0",
+    "log4js": "^6.4.1",
+    "moment": "^2.22.1",
+    "mongodb": "^4.3.1",
+    "promise": "^7.1.1",
+    "uuid": "^8.3.2",
+    "ws": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "multihashing-async": "~1.0.0",
+    "@hapi/joi": "~17.1.1"
+  },
+  "author": "IT People Corporation.",
+  "license": "Apache-2.0"
+}
