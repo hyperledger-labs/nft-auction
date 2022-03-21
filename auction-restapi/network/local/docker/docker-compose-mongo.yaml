@@ -1,0 +1,12 @@
+# Copyright IBM Corporation. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: "2.4"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: 'mongo-express'
+    ports:
+      - 27017:27017

@@ -1,0 +1,13 @@
+{
+    "channelName": "defaultchannel",
+    "chaincodeName": "auctionchaincode",
+    "logLevel": "INFO",
+    "secret": "thisismysecret",
+    "host": "localhost",
+    "port": "3001",
+    "auctionHouseOrgName": "org1",
+    "jwt_expiretime": "360000",
+    "masterKey": "P@ssW0rd1!#",
+    "dateFormat": "YYYY-MM-DD HH:mm:ss",
+    "hashingAlgorithm": "sha2-256"
+}

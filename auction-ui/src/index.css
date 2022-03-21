@@ -1,0 +1,332 @@
+/**
+ * Copyright IT People Corporation. All Rights Reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Contributors: Mohan Venkataraman, Dilip Manjunatha, Aashish Shrestha, Sahinul Haque
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.img-stretch { width: 100% }
+
+.jumbotron {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.login-form {
+  background: url('./assets/workshop_bg.jpg') no-repeat;
+  background-size: 65% 100%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  padding: 15px;
+  margin: 0 0 auto auto;
+  background-color: #fff;
+}
+
+.register-form {
+  background: url('./assets/workshop_bg.jpg') no-repeat;
+  background-size: 65% 100%;
+}
+
+.form-create-account {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  background-color: #fff;
+  margin: 0 0 auto auto;
+}
+
+.form-create-account button[type='submit']:disabled {
+  background-color: #6c757d;
+}
+
+.artwork-card {
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border: none;
+}
+
+.artwork-card h1 {
+  font-size: 1.3rem;
+}
+
+.artwork-card-disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.card-img-top {
+  min-height: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.watermark {
+  position: absolute;
+  opacity: .3;
+  width: 100%;
+  height: 300px;
+  background: url('./assets/watermark.png') repeat;
+  background-position: left center;
+  background-size: 40%;
+}
+.watermark-thumb { width: 100%; }
+.watermark-full { width: 90%; height: 100%; }
+
+.artwork-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transform: translate(0, -5px);
+}
+
+.art-detail-modal img {
+  max-height: 450px;
+  min-height: 450px;
+  object-fit: contain;
+  background: black;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 1.2rem;
+}
+
+tr.auction {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  border: none;
+}
+
+td.artwork {
+  padding: 0;
+}
+
+td.artwork img {
+  object-fit: cover;
+}
+
+.badge-INIT { background-color: #17a2b8; color: white; }
+.badge-OPEN { background-color: #28a745; color: white; }
+.badge-CLOSED { background-color: #dc3545; color: white; }
+
+.welcome-modal h2 {
+  font-size: 1.3rem;
+  padding-top: 10px;
+}
+
+.welcome-modal h3 {
+  font-size: 1rem;
+}
+
+.open-sidebar {
+  position: fixed;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  top: 100px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9;
+}
+
+.open-sidebar-closed {
+  left: -100px;
+}
+
+.persona {
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  width: 300px;
+  background: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  z-index: 99;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-closed {
+  left: -300px;
+}
+
+.sidebar h1 {
+  font-size: 1.3rem;
+}
+
+.sidebar h2 {
+  padding-top: 10px;
+  font-size: 1rem;
+}
+
+.back-btn {
+  cursor: pointer;
+}
+
+.blockchain-explorer {
+  position: fixed;
+  bottom: -100px;
+  width: 100%;
+  height: auto;
+  background-color: #393e41;
+  z-index: auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all .5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blockchain-explorer-visible {
+  bottom: 0px;
+}
+
+.blockchain-block {
+  font-size: 2rem;
+  position: relative;
+  width: auto;
+  height: 50px;
+  background-color: #057aff;
+  float: left;
+  margin-right: 15px;
+  left: 9999px;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blockchain-block:hover {
+  background-color: #479dff;
+}
+
+.blockchain-block-added {
+  left: 0;
+}
+
+.list-inline {
+  padding: 0;
+  margin: 0;
+}
+
+.block {
+  list-style: none;
+}
+
+.popover {
+  font-size: 1.2rem;
+  z-index: 9999;
+}
+
+.popover-header {
+  font-size: 1.4rem;
+}
+
+.history-title {
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+.spinner-wrapper {
+  min-height: 300px;
+}
+
+.spinner {
+	position: absolute;
+	z-index: 1;
+  margin-top: 100px;
+	border: 3px solid #eee;
+	border-radius: 50%;
+	border-top: 3px solid #000;
+	width: 80px;
+	height: 80px;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.stamp {
+  position: absolute;
+  z-index: 999;
+  top: 45%;
+  left: 25%;
+  transform: rotate(-20deg);
+}
+
+.stamp:after {
+  border: solid 0.2em #fff;
+  color: #fff;
+  content: 'Closed';
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1;
+  opacity: 0;
+  position: absolute;
+  width: 300px;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0 auto;
+  text-transform: uppercase;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  transform: rotate(-5deg) scale(5);
+  transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+}
+
+.closed .stamp:after {
+  opacity: 0.75;
+  transform: rotate(0deg) scale(1);
+  z-index: -1;
+}
+
+.text-truncate {
+  max-width: 150px !important;
+}

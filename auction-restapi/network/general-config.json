@@ -1,0 +1,18 @@
+{
+    "channelConfigPath": "../../network/local/channel/defaultchannel.tx",
+    "eventWaitTime": 600000,
+    "loglevel": "INFO",
+    "chaincodePath": "../../../auction-chaincode",
+    "adminList": [
+        {
+            "org": "org1",
+            "username": "admin",
+            "password": "adminpw"
+        },
+        {
+            "org": "org2",
+            "username": "admin",
+            "password": "adminpw"
+        }
+    ]
+}
