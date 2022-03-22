@@ -5,7 +5,6 @@ To successfully run the application, you will need several dependencies installe
 If not already installed, you will need to install Node.js, Go, make, curl, jq, Git, Docker, and Docker-Compose on your Ubuntu system. 
 Use the steps in each section below to properly install them.
 
-
 ## Install Node.js
 Recommended version - 16.x
 Node.js can be installed either directly or using nvm (node version manager). Follow the below steps to install it using nvm.
