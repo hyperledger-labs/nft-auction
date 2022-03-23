@@ -7,3 +7,6 @@ This lab uses Hyperledger Fabric as the underlying ledger technology to create a
 # Initial Committers
 - https://github.com/sahinul-haque
 - https://github.com/DilipManjunatha
+
+# Setup
+Please read [SETUP](SETUP.md)
