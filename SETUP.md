@@ -6,10 +6,14 @@ If not already installed, you will need to install Node.js, Go, make, curl, jq, 
 Use the steps in each section below to properly install them.
 
 ## Install Node.js
-Recommended version - 16.x
+Recommended version - 14.x
 Node.js can be installed either directly or using nvm (node version manager). Follow the below steps to install it using nvm.
 
 ### Install nvm
+Note: 
+Check if bashrc file exists using `ls ~/.bashrc`. If it does not exist, add the file using `touch ~/.bashrc`.
+Check if profile file(current user) exists using `ls ~/.profile`. If it does not exist, add the file using `touch ~/.profile`.
+
 For ubuntu:
 ```
 sudo apt-get install build-essential libssl-dev -y
@@ -22,8 +26,8 @@ export NVM_DIR="$HOME/.nvm"
 ```
 ### Install required Node.js version
 ```
-nvm install v16.14.1
-nvm use v16.14.1
+nvm install 14
+nvm use 14
 ```
 
 ## Install Golang
@@ -31,10 +35,18 @@ The smart contracts we use are written in Go. Follow the below steps to install 
 For ubuntu:
 ```
 wget https://dl.google.com/go/go1.16.5.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf  go1.16.5.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-go version
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf  go1.16.5.linux-amd64.tar.gz
 ```
+Check if .profile file exists(for a current user installation) using `ls ~/.profile`. If it does not exist, add the file using `touch ~/.profile`.
+Open the file using vi editor
+`vi ~/.profile`
+Append the following line
+`export PATH=$PATH:/usr/local/go/bin`
+Source the profile
+`source ~/.profile`
+Check if go is installed
+`go version`
+
 **Troubleshooting note**: If you have "permission denied" error in untarring the file, please make sure to have correct ownership of directories, or you may want to use `sudo` for the untar. 
 For more details or troubleshooting, see https://golang.org/doc/install
 
@@ -55,8 +67,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 ### Add user account to the docker group
 ```
+sudo groupadd docker
 sudo usermod -aG docker $(whoami)
-echo "Added currect user to docker group"
 groups $USER
 sudo apt-get update -y
 ```
@@ -71,6 +83,7 @@ For Ubuntu:
 ```
 sudo apt-get install docker-compose -y
 ```
+**Troubleshooting note**: If you have permission issue to run docker, run `newgrp docker` and retry.
 
 ## Install Make
 For Ubuntu:
@@ -91,17 +104,18 @@ sudo apt-get install curl -y
 ```
 
 # Starting the application
+After the prerequisites are installed, follow the below instructions to start the application on local machine.
 
-1. After the prerequisites are installed, follow the below instructions to start the application on local machine.
+1. Download or Clone the code repo.
 
-2. Open a terminal and run the blockchain network setup using the following commands: 
+2. Open a terminal from the root directory of the code repo and run the blockchain network using the following commands: 
     ```
     cd auction-resapi/network/local
     ./start.sh
     ``` 
     The script will stand up a simple Fabric network. The network has two peer organizations with two peer each and a single node raft ordering service
 
-3. After the blockchain network setup is complete, start the node application using the following commands:
+3. After the blockchain network setup is complete, start the Node.js backend server using the following commands:
     ```
     cd auction-resapi/node
     npm install
@@ -109,7 +123,7 @@ sudo apt-get install curl -y
     ```
     The node application should now be up and running on `localhost:3001`.
 
-4. Open another terminal, start the UI application using the following commands:
+4. Open another terminal from the root directory of the code repo and start the UI application using the following commands:
     ```
     cd auction-ui
     npm install
