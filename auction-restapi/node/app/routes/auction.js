@@ -18,7 +18,8 @@ router.post('/init', auctionCtrl.initAuction);
 router.post('/open', auctionCtrl.openAuction);
 router.post('/close', auctionCtrl.closeOpenAuction);
 router.get('/open', auctionCtrl.getOpenAuctions);
-router.get('/init', auctionCtrl.getInitAuctions);
+router.get('/open/auctionHouse', auctionCtrl.getOpenAuctionsByAH);
+router.get('/init', auctionCtrl.getInitAuctionsByAH);
 router.get('/:auctionID', auctionCtrl.getAuctionByID);
 
 //mandatary to export

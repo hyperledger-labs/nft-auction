@@ -73,12 +73,38 @@ auctionCtrl.getInitAuctions = async function (req, res) {
     }
 }
 
+auctionCtrl.getInitAuctionsByAH = async function (req, res) {
+    logger.debug(">>> inside auctionCtrl.getInitAuctionsByAH() ...");
+    res.set('Content-Type', 'application/json');
+    try {
+        let auctionService = new AuctionService();
+        let response = await auctionService.getInitAuctionsByAuctionHouseID(req.decoded);
+        return res.status(200).send(response);
+    } catch (error) {
+        logger.error(error);
+        return res.status(401).send(errorResponse.format(error.message));
+    }
+}
+
 auctionCtrl.getOpenAuctions = async function (req, res) {
     logger.debug(">>> inside auctionCtrl.getOpenAuctions() ...");
     res.set('Content-Type', 'application/json');
     try {
         let auctionService = new AuctionService();
         let response = await auctionService.getOpenAuctions(req.decoded);
+        return res.status(200).send(response);
+    } catch (error) {
+        logger.error(error);
+        return res.status(401).send(errorResponse.format(error.message));
+    }
+}
+
+auctionCtrl.getOpenAuctionsByAH = async function (req, res) {
+    logger.debug(">>> inside auctionCtrl.getOpenAuctions() ...");
+    res.set('Content-Type', 'application/json');
+    try {
+        let auctionService = new AuctionService();
+        let response = await auctionService.getOpenAuctionsByAuctionHouseID(req.decoded);
         return res.status(200).send(response);
     } catch (error) {
         logger.error(error);

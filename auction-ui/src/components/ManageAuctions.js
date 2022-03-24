@@ -79,7 +79,7 @@ class ManageAuctions extends Component {
       toast.dismiss();
       toast.error(err);
     });
-    this.auctions.getOpenAuctions().then((response => {
+    this.auctions.getOpenAuctionsForCurrentAuctionHouse().then((response => {
       this.setState({
         openAuctions: response,
         isLoadingOpenAuctions: false,
