@@ -8,7 +8,7 @@
 
 import {
   API_ENDPOINT_ADDAUCTION_ITEM, API_ENDPOINT_GETAUCTION_ITEMS,
-  API_ENDPOINT_ADDAUCTION_OPEN_ITEM, API_ENDPOINT_GETAUCTION_OPEN_ITEMS, API_ENDPOINT_ADDBID,
+  API_ENDPOINT_ADDAUCTION_OPEN_ITEM, API_ENDPOINT_GETAUCTION_OPEN_ITEMS, API_ENDPOINT_GETAUCTION_OPEN_ITEMS_BY_AH, API_ENDPOINT_ADDBID,
   API_ENDPOINT_GETHIGHBID_BYID, API_ENDPOINT_BID_BUYNOW, API_ENDPOINT_AUCTION_CLOSE
   , HEADERS
 } from './Constants.js';
@@ -100,6 +100,31 @@ export default class Auctions {
   getOpenAuctions() {
     return new Promise(function (resolve, reject) {
       fetch(API_ENDPOINT_GETAUCTION_OPEN_ITEMS, {
+        headers: HEADERS(),
+        method: 'GET',
+      }).then(response => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        //Error handler
+        response.json().then(err=>{
+          reject(err.message);
+        }).catch(e=>{
+          reject(response.statusText);
+        });
+        throw new Error(response.statusText);
+      })
+        .then(data => resolve(data))
+        .catch(err => {
+          toast.dismiss();
+          toast.error(err);
+        });
+    });
+  }
+
+  getOpenAuctionsForCurrentAuctionHouse() {
+    return new Promise(function (resolve, reject) {
+      fetch(API_ENDPOINT_GETAUCTION_OPEN_ITEMS_BY_AH, {
         headers: HEADERS(),
         method: 'GET',
       }).then(response => {

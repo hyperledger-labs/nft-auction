@@ -32,19 +32,21 @@ type Role struct {
 // Constant for All function name that will be called from invoke
 /////////////////////////////////////////////////////
 const (
-	CREATE_USR                string = "CreateUser"
-	TRANSFER_NFT              string = "TransferNft"
-	CREATE_AUCTION_REQUEST    string = "InitAuction"
-	OPEN_AUCTION              string = "OpenAuction"
-	CLOSE_AUCTION             string = "CloseAuction"
-	BUY_IT_NOW                string = "BuyItNow"
-	GET_INIT_AUCTION_REQUESTS string = "GetInitAuctionRequests"
-	GET_OPEN_AUCTION_REQUESTS string = "GetOpenAuctionRequests"
-	GET_AUCTION_ITEMS_BY_USER string = "GetAuctionItemsByUser"
-	POST_BID                  string = "PostBid"
-	GET_BIDS_BY_AUCTION_ID    string = "GetBidsByAuctionID"
-	GET_HIGHEST_BID           string = "GetHighestBid"
-	GET_BID_BY_ID             string = "GetBidByID"
+	CREATE_USR                      string = "CreateUser"
+	TRANSFER_NFT                    string = "TransferNft"
+	CREATE_AUCTION_REQUEST          string = "InitAuction"
+	OPEN_AUCTION                    string = "OpenAuction"
+	CLOSE_AUCTION                   string = "CloseAuction"
+	BUY_IT_NOW                      string = "BuyItNow"
+	GET_INIT_AUCTION_REQUESTS       string = "GetInitAuctionRequests"
+	GET_INIT_AUCTION_REQUESTS_BY_AH string = "GetInitAuctionRequestsByAuctionHouse"
+	GET_OPEN_AUCTION_REQUESTS       string = "GetOpenAuctionRequests"
+	GET_OPEN_AUCTION_REQUESTS_BY_AH string = "GetOpenAuctionRequestsByAuctionHouse"
+	GET_AUCTION_ITEMS_BY_USER       string = "GetAuctionItemsByUser"
+	POST_BID                        string = "PostBid"
+	GET_BIDS_BY_AUCTION_ID          string = "GetBidsByAuctionID"
+	GET_HIGHEST_BID                 string = "GetHighestBid"
+	GET_BID_BY_ID                   string = "GetBidByID"
 	// GET_ITEM_BY_ID            string = "GetItemByID"
 	// GET_NFT_BY_ID           string = "GetNftByID"
 	GET_AUCTION_BY_ID       string = "GetAuctionByID"
@@ -86,7 +88,9 @@ func (t *ProjectKickerChaincode) initMaps() {
 	t.funcMap[CLOSE_AUCTION] = closeAuction
 	t.funcMap[BUY_IT_NOW] = buyItNow
 	t.funcMap[GET_INIT_AUCTION_REQUESTS] = getListOfInitAucs
+	t.funcMap[GET_INIT_AUCTION_REQUESTS_BY_AH] = getListOfInitAucsByAH
 	t.funcMap[GET_OPEN_AUCTION_REQUESTS] = getListOfOpenAucs
+	t.funcMap[GET_OPEN_AUCTION_REQUESTS_BY_AH] = getListOfOpenAucsByAH
 	// t.funcMap[GET_AUCTION_ITEMS_BY_USER] = getAuctionItemsByUser
 	t.funcMap[GET_NFT_LIST_BY_USER] = queryNftListByUser
 	t.funcMap[GET_NFT_LIST_BY_ITEM_ID] = queryNftListByItemId

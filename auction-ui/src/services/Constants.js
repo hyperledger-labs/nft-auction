@@ -21,6 +21,7 @@ export const API_ENDPOINT_ADDAUCTION_ITEM = API_ENDPOINT + '/auction/init';
 export const API_ENDPOINT_GETAUCTION_ITEMS = API_ENDPOINT + '/auction/init';
 export const API_ENDPOINT_ADDAUCTION_OPEN_ITEM = API_ENDPOINT + '/auction/open'; 
 export const API_ENDPOINT_GETAUCTION_OPEN_ITEMS = API_ENDPOINT + '/auction/open';
+export const API_ENDPOINT_GETAUCTION_OPEN_ITEMS_BY_AH = API_ENDPOINT + '/auction/open/auctionHouse';
 export const API_ENDPOINT_ADDBID = API_ENDPOINT + '/bid';
 export const API_ENDPOINT_GETHIGHBID_BYID = (auctionId) => API_ENDPOINT + `/bid/high/${auctionId}`; 
 export const API_ENDPOINT_BID_BUYNOW = API_ENDPOINT + '/bid/buyNow';

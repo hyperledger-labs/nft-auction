@@ -30,6 +30,16 @@ func getListOfInitAucs(stub shim.ChaincodeStubInterface, args []string) cycoreut
 	return cycoreutils.ConstructResponse("SASTREC011S", fmt.Sprintf("List of Init Auctions"), jsonRows)
 }
 
+// getListOfInitAucsByAH - Get List of Auctions that have been initiated against an Auction House
+// ======================================================================================
+func getListOfInitAucsByAH(stub shim.ChaincodeStubInterface, args []string) cycoreutils.Response {
+	jsonRows, err := getAuctionsListByStatusAndAH(stub, INIT, args[0])
+	if err != nil {
+		return cycoreutils.ConstructResponse("SASTQRY003E", (errors.Wrapf(err, "Operation Failed")).Error(), nil)
+	}
+	return cycoreutils.ConstructResponse("SASTREC011S", fmt.Sprintf("List of Init Auctions for the current Auction House"), jsonRows)
+}
+
 // getListOfOpenAucs - Get List of Open Auctions for which bids can be supplied
 // ======================================================================================
 func getListOfOpenAucs(stub shim.ChaincodeStubInterface, args []string) cycoreutils.Response {
@@ -38,6 +48,16 @@ func getListOfOpenAucs(stub shim.ChaincodeStubInterface, args []string) cycoreut
 		return cycoreutils.ConstructResponse("SASTQRY003E", (errors.Wrapf(err, "Operation Failed")).Error(), nil)
 	}
 	return cycoreutils.ConstructResponse("SASTQRY014S", fmt.Sprintf("List of Open Auctions"), jsonRows)
+}
+
+// getListOfOpenAucsByAH - Get List of Open Auctions against an Auction House
+// ======================================================================================
+func getListOfOpenAucsByAH(stub shim.ChaincodeStubInterface, args []string) cycoreutils.Response {
+	jsonRows, err := getAuctionsListByStatusAndAH(stub, OPEN, args[0])
+	if err != nil {
+		return cycoreutils.ConstructResponse("SASTQRY003E", (errors.Wrapf(err, "Operation Failed")).Error(), nil)
+	}
+	return cycoreutils.ConstructResponse("SASTQRY014S", fmt.Sprintf("List of Open Auctions for the current Auction House"), jsonRows)
 }
 
 // verifyIfNftIsOnAuction - Checks if an NFT is already on Auction
@@ -389,6 +409,17 @@ func getAuctionsList(stub shim.ChaincodeStubInterface, queryString string) ([]by
 
 func getAuctionsListByStatus(stub shim.ChaincodeStubInterface, status string) ([]byte, error) {
 	queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"%s\",\"status\":\"%s\"}}", AUCREQ, status)
+
+	queryResults, err := getAuctionsList(stub, queryString)
+	if err != nil {
+		return nil, err
+	}
+	logger.Debug(queryResults)
+	return queryResults, nil
+}
+
+func getAuctionsListByStatusAndAH(stub shim.ChaincodeStubInterface, status string, auctionHouseID string) ([]byte, error) {
+	queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"%s\",\"status\":\"%s\",\"auctionHouseID\":\"%s\"}}", AUCREQ, status, auctionHouseID)
 
 	queryResults, err := getAuctionsList(stub, queryString)
 	if err != nil {
