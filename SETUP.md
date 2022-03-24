@@ -110,14 +110,14 @@ After the prerequisites are installed, follow the below instructions to start th
 
 2. Open a terminal from the root directory of the code repo and run the blockchain network using the following commands: 
     ```
-    cd auction-resapi/network/local
+    cd auction-restapi/network/local
     ./start.sh
     ``` 
     The script will stand up a simple Fabric network. The network has two peer organizations with two peer each and a single node raft ordering service
 
 3. After the blockchain network setup is complete, start the Node.js backend server using the following commands:
     ```
-    cd auction-resapi/node
+    cd auction-restapi/node
     npm install
     npm start
     ```
