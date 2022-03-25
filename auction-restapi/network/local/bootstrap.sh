@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+set -e
 
 # if version not passed in, default to latest released version
 VERSION=2.3.2

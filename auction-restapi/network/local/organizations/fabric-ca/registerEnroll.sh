@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 function createorg1() {
   infoln "Enrolling the CA admin"

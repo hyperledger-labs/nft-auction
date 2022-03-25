@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 C_RESET='\033[0m'
 C_RED='\033[0;31m'
