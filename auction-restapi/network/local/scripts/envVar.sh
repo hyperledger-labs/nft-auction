@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+set -e
 
 # This is a collection of bash functions used by different scripts
 
