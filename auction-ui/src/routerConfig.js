@@ -37,6 +37,7 @@ export default function RouteConfig() {
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register-member" element={<CreateAccount />} />
+                <Route path="/register-ah" element={<CreateAccount userType="AH"/>} />
                 <Route path="/signout" element={<SignOut />} />
                 <Route path="/*" element={<PageNotFound />} />
             </Route>
