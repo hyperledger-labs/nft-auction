@@ -102,6 +102,7 @@ class NewArtwork extends Component {
       toast.success("Artwork submitted successfully");
 
     }).catch(err => {
+      this.setState({ isLoading: false });
       toast.dismiss();
       toast.error(err);
     });

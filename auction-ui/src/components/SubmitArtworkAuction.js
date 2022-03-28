@@ -38,7 +38,7 @@ class SubmitArtworkAuction extends Component {
   }
 
   componentDidMount() {
-    $(".submit-success").hide();
+    // $(".submit-success").hide();
   }
 
   handleChange(event) {
@@ -67,6 +67,7 @@ class SubmitArtworkAuction extends Component {
       toast.success("NFT item submitted to auction house successfully.");
       
     }).catch(err => {
+      this.setState({ isLoading: false });
       toast.dismiss();
       toast.error(err);
     });

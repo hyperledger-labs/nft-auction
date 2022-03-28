@@ -105,6 +105,7 @@ class TransferArtwork extends Component {
       toast.success(`Artwork transferred to ${this.state.transfereeUsername} successfully.`);
       
     }).catch(err => {
+      this.setState({ isLoading: false });
       toast.dismiss();
       toast.error(err);
     });

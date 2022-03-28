@@ -52,6 +52,7 @@ class OpenAuction extends Component {
       toast.success("Auction started successfully.");
       
     }).catch(err => {
+      this.setState({ isLoading: false });
       toast.dismiss();
       toast.error(err);
     });
