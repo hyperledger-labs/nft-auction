@@ -4,7 +4,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-set -e
 
 # import utils
 . scripts/envVar.sh
