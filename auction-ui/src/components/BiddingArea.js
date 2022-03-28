@@ -86,6 +86,7 @@ class BiddingArea extends Component {
       }
     })
       .catch(err => {
+        this.setState({ isMakingBid: false });
         toast.dismiss();
         toast.error(err);
       });
@@ -113,6 +114,7 @@ class BiddingArea extends Component {
         toast.success("Buynow submitted successfully.");
       }
     }).catch(err => {
+      this.setState({ isBuyingNow: false });
       toast.dismiss();
       toast.error(err);
     });
