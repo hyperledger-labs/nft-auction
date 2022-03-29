@@ -125,7 +125,7 @@ module.exports.enrollAdmin = async (orgName) => {
 		logger.info('Successfully enrolled admin user and imported it into the wallet');
 	} catch (error) {
 		console.error(`Failed to enroll admin user : ${error}`);
-		throw new Error('Failed to enroll admin user: ' + err.toString());
+		throw new Error('Failed to enroll admin user: ' + error.toString());
 	}
 };
 
