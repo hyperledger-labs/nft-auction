@@ -364,3 +364,24 @@ func deleteNftObject(stub shim.ChaincodeStubInterface, args []string) cycoreutil
 
 	return cycoreutils.ConstructResponse("SASTDEL013I", fmt.Sprintf("Successfully Deleted NFT object"), nil)
 }
+
+// getNftObject returns NFT object if found
+func getNftObject(stub shim.ChaincodeStubInterface, nftId string) (*nftobject, error) {
+	collectionName := ""
+	// query the NFT object by NftId
+	NftBytes, err := cycoreutils.QueryObject(stub, NFT, []string{nftId}, collectionName)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to query if NFT exists")
+	}
+	if NftBytes == nil {
+		return nil, fmt.Errorf("NFT does not exist")
+	}
+
+	// unmarshal the NFT object if it exists
+	NftObject := &nftobject{}
+	err = cycoreutils.JSONtoObject(NftBytes, NftObject)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to unmarshal NFT object")
+	}
+	return NftObject, nil
+}
