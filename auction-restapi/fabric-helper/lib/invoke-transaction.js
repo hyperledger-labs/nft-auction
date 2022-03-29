@@ -58,7 +58,8 @@ var invokeTransaction = async function (channelName, chaincodeName, args,
 	} catch (err) {
 		logger.error('Error in submitting transaction' + err);
 		if (err.message.includes('DiscoveryService has failed to return results') ||
-			err.message.includes('REQUEST TIMEOUT')
+			err.message.includes('REQUEST TIMEOUT') ||
+			err.message.includes('UNAVAILABLE')
 		) {
 			throw new Error("Peers are busy/unreachable. Try again later");
 		}

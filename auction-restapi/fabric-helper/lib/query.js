@@ -58,9 +58,9 @@ var queryChaincode = async function (channelName, chaincodeName, args,
 			return 'results is null';
 		}
 	} catch (err) {
-		logger.error('Failed query: ' + err.stack ? err.stack : err);
 		if (err.message.includes('DiscoveryService has failed to return results') ||
-			err.message.includes('REQUEST TIMEOUT')
+			err.message.includes('REQUEST TIMEOUT') ||
+			err.message.includes('UNAVAILABLE')
 		) {
 			throw new Error("Peers are busy/unreachable. Try again later");
 		}
