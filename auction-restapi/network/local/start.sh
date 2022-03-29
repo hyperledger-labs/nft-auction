@@ -1,5 +1,4 @@
 # bring down the current network
-set -e
 ./network.sh down
 
 # Pull the images
