@@ -361,6 +361,10 @@ func closeAuction(stub shim.ChaincodeStubInterface, args []string) cycoreutils.R
 
 		return cycoreutils.ConstructResponse("CYDOCUPD010I", fmt.Sprintf("Auction is closed successfully !!!. Transfer NFT intitated"), nil)
 	}
+	err = returnNftToOwner(stub, AuctionRequest.NftId)
+	if err != nil {
+		return cycoreutils.ConstructResponse("SASTUPD009E", (errors.Wrapf(err, "Failed to return the unsold NFT to it's owner")).Error(), nil)
+	}
 	return cycoreutils.ConstructResponse("CYDOCUPD010I", fmt.Sprintf("Auction is closed successfully !!!."), nil)
 }
 
@@ -427,4 +431,24 @@ func getAuctionsListByStatusAndAH(stub shim.ChaincodeStubInterface, status strin
 	}
 	logger.Debug(queryResults)
 	return queryResults, nil
+}
+
+// returnNftToOwner returns the NFT back to it's owner when it is unsold in the auction
+func returnNftToOwner(stub shim.ChaincodeStubInterface, nftId string) error {
+	collectionName := ""
+
+	nft, err := getNftObject(stub, nftId)
+	if err != nil {
+		return err
+	}
+
+	// reset the status of the token
+	nft.NftStatus = INITIAL
+
+	NftObjectBytes, _ := cycoreutils.ObjecttoJSON(nft)
+	err = cycoreutils.UpdateObject(stub, NFT, []string{nftId}, NftObjectBytes, collectionName)
+	if err != nil {
+		return fmt.Errorf("Unable to update Auction NFT Status")
+	}
+	return nil
 }
