@@ -62,6 +62,8 @@ var invokeTransaction = async function (channelName, chaincodeName, args,
 			err.message.includes('UNAVAILABLE')
 		) {
 			throw new Error("Peers are busy/unreachable. Try again later");
+		} else if (err.message.includes('MVCC_READ_CONFLICT')){
+			throw new Error("Transaction failed. Try again later");
 		}
 		throw new Error(JSON.parse(err.responses[0].response.message).detail);
 	} finally {
