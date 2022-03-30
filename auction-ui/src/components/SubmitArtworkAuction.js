@@ -98,7 +98,7 @@ class SubmitArtworkAuction extends Component {
             <input className="form-control" type="number" name="reservePrice" max={this.state.auction.buyItNowPrice} placeholder="Dollars" onChange={this.handleChange} required />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" className="btn btn-primary mt-2" disabled={this.state.isLoading}>
           Submit Artwork for Auction
           {this.state.isLoading && <SpinnerButton />}
         </button>

@@ -121,7 +121,7 @@ class TransferArtwork extends Component {
             Transfer this artwork to another user without payment.
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" className="btn btn-primary mt-2" disabled={this.state.isLoading}>
           Transfer Artwork
           {this.state.isLoading && <SpinnerButton />}
         </button>

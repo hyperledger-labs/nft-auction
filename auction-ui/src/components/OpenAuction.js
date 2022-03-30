@@ -68,7 +68,7 @@ class OpenAuction extends Component {
               <input type="number" className="form-control" name="duration" onChange={this.handleChange} required />
               <small className="form-text text-muted">Enter the auction duration in minutes.</small>
             </div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-primary btn-block" disabled={this.state.isLoading}>
               Begin Auction
               {this.state.isLoading && <SpinnerButton />}
             </button>

@@ -62,7 +62,7 @@ class NewArtwork extends Component {
     let file = event.target.files[0];
     //validating
     let fileSize = parseFloat(file["size"] || 0) / (1024 * 1024); //in mb
-    if(!["image/jpeg","image/png","image/svg+xml"].includes(file.type) ) {
+    if (!["image/jpeg", "image/png", "image/svg+xml"].includes(file.type)) {
       event.target.setCustomValidity("Invalid image. Allowed image types are jpg, png and svg.");
       event.target.reportValidity();
     }
@@ -187,7 +187,7 @@ class NewArtwork extends Component {
             <div className="form-group">
               <label htmlFor="exampleFormControlFile1">Upload Photo of Artwork</label>
               <input type="file" accept="image/*" className="form-control-file" onChange={this.handleUploadFile} required />
-              <span className="text-muted">Allowed image types are jpg, png and svg.<br/>Max upload size {MAX_FILEUPLOAD_SIZE}MB.</span>
+              <span className="text-muted">Allowed image types are jpg, png and svg.<br />Max upload size {MAX_FILEUPLOAD_SIZE}MB.</span>
             </div>
           </div>
           {/* <div className="col-md-6 mb-3">
@@ -196,7 +196,7 @@ class NewArtwork extends Component {
           </div> */}
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={this.state.isLoading} >
           Save and Add Artwork
           {this.state.isLoading && <SpinnerButton />}
         </button>

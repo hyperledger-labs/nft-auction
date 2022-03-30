@@ -28,6 +28,7 @@ class ManageAuctions extends Component {
       isLoadingAuctionRequests: false,
       isLoadingOpenAuctions: false,
       newRequestCount: 0,
+      auctionCloseDelayTimer: null,
     };
 
     this.auctions = new AuctionService();
@@ -43,6 +44,12 @@ class ManageAuctions extends Component {
 
   componentDidMount() {
     this.getAuctions();
+  }
+
+  componentWillUnmount() {
+    if (this.state.auctionCloseDelayTimer) {
+      clearTimeout(this.state.auctionCloseDelayTimer);
+    }
   }
 
   updateOnSocketMessage() {
@@ -101,12 +108,16 @@ class ManageAuctions extends Component {
 
   handleCloseAuction(auctionId) {
     let auctionToClose = { auctionID: auctionId };
-    this.auctions.closeAuction(auctionToClose).then((response => {
-      this.updateAuctionStatus(auctionId);
-    })).catch(err => {
-      toast.dismiss();
-      toast.error(err);
-    });
+
+    let timer = setTimeout(() => {
+      this.auctions.closeAuction(auctionToClose).then((response => {
+        this.updateAuctionStatus(auctionId);
+      })).catch(err => {
+        toast.dismiss();
+        toast.error(err);
+      });
+    }, 2000);
+    this.setState({ auctionCloseDelayTimer: timer });
   }
 
   renderOpenAuctions() {
