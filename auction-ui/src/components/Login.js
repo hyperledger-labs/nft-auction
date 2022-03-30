@@ -87,7 +87,7 @@ class Login extends Component {
           {this.state.message && <div className="alert alert-danger my-4" role="alert">{this.state.message}</div>}
           <input type="text" className="form-control" name="username" placeholder="Username" onChange={this.handleChange} required autoFocus />
           <input type="password" className="form-control mt-2" name="password" placeholder="Password" onChange={this.handleChange} required />
-          <button className="btn btn-primary btn-block my-4" type="submit">Sign in
+          <button className="btn btn-primary btn-block my-4" type="submit" disabled={this.state.isLoading}>Sign in
             {this.state.isLoading && <SpinnerButton />}
           </button>
           <Link to="/register-member">Create a New Account</Link>
