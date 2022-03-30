@@ -194,7 +194,9 @@ module.exports.registerAndEnrollUser = async (username, secret, userOrg, isJson)
 		}
 	} catch (error) {
 		logger.error(`Failed to register user : ${error}`);
-		if(error.message.includes('Calling register endpoint failed')){
+		if (error.message.includes('Calling register endpoint failed') ||
+			error.message.includes('Calling enroll endpoint failed')
+		) {
 			throw new Error("Fabric CA is busy/unreachable. Try again later");
 		}
 		throw new Error(`Failed to register user : ${error}`);
