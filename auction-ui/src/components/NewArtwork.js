@@ -46,6 +46,12 @@ class NewArtwork extends Component {
     this.handleDatePicker = this.handleDatePicker.bind(this);
   }
 
+  componentDidMount() {
+    $('#newArtworkModal').on('hidden.bs.modal', function (event) {
+      document.getElementById("formNewArtWork").reset();
+    });        
+  }
+
   handleDatePicker(date) {
     let { selectedDate } = this.state;
     let artwork = { ...this.state.artwork };
@@ -56,7 +62,6 @@ class NewArtwork extends Component {
     this.setState({ selectedDate, artwork });
 
   }
-
 
   handleUploadFile(event) {
     let file = event.target.files[0];

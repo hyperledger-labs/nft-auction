@@ -29,6 +29,12 @@ class OpenAuction extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    $('#openAuctionModal').on('hidden.bs.modal', function (event) {
+      document.getElementById("formOpenAuction").reset();
+    });        
+  }
+
   handleChange(event) {
     const target = event.target;
     const value = target.value;

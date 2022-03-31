@@ -38,7 +38,9 @@ class SubmitArtworkAuction extends Component {
   }
 
   componentDidMount() {
-    // $(".submit-success").hide();
+    $('#submitArtworkModal').on('hidden.bs.modal', function (event) {
+      document.getElementById("formSubmitArtWork").reset();
+    });        
   }
 
   handleChange(event) {
