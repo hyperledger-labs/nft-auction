@@ -50,9 +50,10 @@ class OpenAuction extends Component {
       $('#openAuctionModal').modal('hide');
       toast.dismiss();
       toast.success("Auction started successfully.");
-      
+      document.getElementById("formOpenAuction").reset();
     }).catch(err => {
       this.setState({ isLoading: false });
+      document.getElementById("formOpenAuction").reset();
       toast.dismiss();
       toast.error(err);
     });
@@ -62,7 +63,7 @@ class OpenAuction extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <form onSubmit={this.handleSubmit}>
+          <form id="formOpenAuction" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="duration">Duration (Minutes)</label>
               <input type="number" className="form-control" name="duration" onChange={this.handleChange} required />

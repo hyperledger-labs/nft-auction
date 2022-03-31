@@ -103,9 +103,11 @@ class TransferArtwork extends Component {
       $('#transferArtworkModal').modal('hide');
       toast.dismiss();
       toast.success(`Artwork transferred to ${this.state.transfereeUsername} successfully.`);
+      document.getElementById("formTransferArtwork").reset();
       
     }).catch(err => {
       this.setState({ isLoading: false });
+      document.getElementById("formTransferArtwork").reset();
       toast.dismiss();
       toast.error(err);
     });
@@ -113,7 +115,7 @@ class TransferArtwork extends Component {
 
   renderContent() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="formTransferArtwork" onSubmit={this.handleSubmit}>
         <div className="mb-3">
           <label htmlFor="reservePrice">Transfer to user</label>
           <input className="form-control" placeholder="Type username here" type="text" name="transfereeUsername" value={this.state.transfereeUsername} onChange={this.handleChange} required />
