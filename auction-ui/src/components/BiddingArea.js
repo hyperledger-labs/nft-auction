@@ -7,6 +7,7 @@
  */
 
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import AuctionsAPI, { AuctionsCancelPromise } from '../services/Auctions.js';
 import { toast } from 'react-toastify';
@@ -38,6 +39,12 @@ class BiddingArea extends Component {
     this.getHighestBid();
     let interval = setInterval(() => this.getHighestBid(), 20000);
     this.setState({ interval });
+
+    $('#artworkDetailModal').on('hidden.bs.modal', function (event) {
+      if(document.getElementById("formBid")) {
+        document.getElementById("formBid").reset();
+      }
+    }); 
   }
 
   componentWillUnmount() {

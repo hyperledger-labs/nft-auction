@@ -47,6 +47,11 @@ class TransferArtwork extends Component {
 
   componentDidMount() {
     this.loadNftID(this.props.nftID);
+    $('#transferArtworkModal').on('hidden.bs.modal', function (event) {
+      if(document.getElementById("formTransferArtwork")) {
+        document.getElementById("formTransferArtwork").reset();
+      }
+    }); 
   }
 
   componentDidUpdate(prevProps, prevState) {
