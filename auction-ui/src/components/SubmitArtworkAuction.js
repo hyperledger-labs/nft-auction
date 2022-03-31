@@ -65,9 +65,11 @@ class SubmitArtworkAuction extends Component {
 
       toast.dismiss();
       toast.success("NFT item submitted to auction house successfully.");
+      document.getElementById("formSubmitArtWork").reset();
       
     }).catch(err => {
       this.setState({ isLoading: false });
+      document.getElementById("formSubmitArtWork").reset();
       toast.dismiss();
       toast.error(err);
     });
@@ -75,7 +77,7 @@ class SubmitArtworkAuction extends Component {
 
   renderContent() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="formSubmitArtWork" onSubmit={this.handleSubmit}>
         <div className="mb-3">
           <label htmlFor="auctionHouseID">Auction House</label>
           <input className="form-control" type="text" name="auctionHouseID" placeholder="" onChange={this.handleChange} required />

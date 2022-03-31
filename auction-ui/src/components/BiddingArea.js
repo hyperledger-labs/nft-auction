@@ -84,9 +84,11 @@ class BiddingArea extends Component {
         toast.dismiss();
         toast.success("Bid submitted successfully.");
       }
+      document.getElementById("formBid").reset();
     })
       .catch(err => {
         this.setState({ isMakingBid: false });
+        document.getElementById("formBid").reset();
         toast.dismiss();
         toast.error(err);
       });
@@ -132,7 +134,7 @@ class BiddingArea extends Component {
             <div className="jumbotron">
               <p><small>Current bid: </small><strong>US ${parseInt(highestBid || 0, 10).toLocaleString()}</strong></p>
               <small className="text-muted">Bid ends in <CountdownTimer endDate={this.state.closeDate} handleCloseAuction={() => this.setState({ isAuctionClosed: true })} /></small>
-              <form onSubmit={this.handleMakeBid}>
+              <form id="formBid" onSubmit={this.handleMakeBid}>
                 <div className="form-group">
                   <label htmlFor="bidPrice">Enter ${parseInt(priceLimitMin, 10).toLocaleString()} or more</label>
                   <div className="input-group">

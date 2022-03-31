@@ -95,14 +95,33 @@ class NewArtwork extends Component {
     this.setState({ isLoading: true });
     this.artwork.createArtwork(this.state.artwork).then((response) => {
       this.props.addArtwork(response);
-      this.setState({ isLoading: false });
+      document.getElementById("formNewArtWork").reset();
+      this.setState({ 
+        isLoading: false,
+        artwork: {
+          itemType: "Classical",
+          itemSubject: "Portrait",
+          itemMedia: "Oil",
+          itemDate: Moment(new Date()).format("MM/DD/yyyy"),
+          numberOfCopies: "1"
+        }, 
+      });
       $('#newArtworkModal').modal('hide');
-
       toast.dismiss();
       toast.success("Artwork submitted successfully");
 
     }).catch(err => {
-      this.setState({ isLoading: false });
+      document.getElementById("formNewArtWork").reset();
+      this.setState({ 
+        isLoading: false,
+        artwork: {
+          itemType: "Classical",
+          itemSubject: "Portrait",
+          itemMedia: "Oil",
+          itemDate: Moment(new Date()).format("MM/DD/yyyy"),
+          numberOfCopies: "1"
+        }, 
+      });
       toast.dismiss();
       toast.error(err);
     });
@@ -110,7 +129,7 @@ class NewArtwork extends Component {
 
   renderContent() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="formNewArtWork" onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="col-md-12 mb-3">
             <label htmlFor="firstName">Artwork Name</label>
