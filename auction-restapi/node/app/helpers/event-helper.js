@@ -53,7 +53,7 @@ eventHelper.registerEvent = async function (sendAll) {
 	let connectionOptions = {
 		identity: adminUserId,
 		wallet: wallet,
-		discovery: { enabled: true, asLocalhost: true }
+		discovery: { enabled: true, asLocalhost: false }
 	};
 
     // Create a new gateway for connecting to our peer node.
