@@ -7,6 +7,7 @@ WORKDIR /opt/api
 
 COPY . /opt/api
 
+RUN mkdir -p /opt/api/network/local/identities
 RUN chown -R ${USR}:${USR} /opt/api
 RUN npm install 
 
