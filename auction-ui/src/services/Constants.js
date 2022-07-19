@@ -9,7 +9,7 @@
 import logo from '../assets/logo.png';
 
 export const API_SOCKET_ENDPOINT = 'ws://localhost:3001';
-export const API_ENDPOINT = 'http://localhost:3001';
+export const API_ENDPOINT = process.env.REACT_APP_API_URL;
 export const API_ENDPOINT_USERLOGIN = API_ENDPOINT + '/user/login';
 export const API_ENDPOINT_USERREGISTER = API_ENDPOINT + '/user/register';
 export const API_ENDPOINT_GETUSER_ITEMS = API_ENDPOINT + '/nft/me';
