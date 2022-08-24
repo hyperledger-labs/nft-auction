@@ -1,10 +1,7 @@
 FROM node:14.19.3
 
 ARG USR=node
-#RUN useradd -u 8877 ${USR}
-
 WORKDIR /opt/api
-
 COPY . /opt/api
 
 RUN mkdir -p /opt/api/network/local/identities

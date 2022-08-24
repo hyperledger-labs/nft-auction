@@ -65,22 +65,51 @@ After the prerequisites are installed, follow the below instructions to start th
 
 2. Open a terminal from the root directory of the code repo and run the blockchain network and application using the following commands: 
     ```
-    ./start.sh
+    ./network-nft-auction.sh up
     ``` 
-    The script will stand up a simple Fabric network. The network has two peer organizations with two peer each and a single node raft ordering service
+    The script will stand up a simple Fabric network, node application (restapi container) and front-end application (ui container). The network has two peer organizations with two peer each and a single node raft ordering service.
 
     The node application should now be up and running on `localhost:3001`.
 
     The front-end application should now be up and running. The app can be now accessed from a web browser @`localhost:3000`.
 
+### NOTE: 
+Make sure to check restapi container logs after each start using the following command:
+   ```
+   docker logs -f restapi
+   ```
+If any error related to service discovery with access denied is observed, refer Troubleshooting guide.
+
 # Stopping and Cleaning up the application and blockchain
 
-1. Stop restapi and ui using docker-compose command from root directory:
+1. Stop node application, front-end application and removing fabric network from root directory using the following command from root directory:
    ```
-   docker-compose down
+   ./network-nft-auction.sh down
+   ```
+# Other options that are supported by the network-nft-auction.sh script
+### app-up:
+In order to bring up node application (restapi container) and front-end application (ui container) after the fabric network is up and running, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh app-up
+   ```
+### app-down:
+In order to bring down node application (restapi container) and front-end application (ui container) leaving the fabric network up and running, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh app-down
+   ```
+### restart:
+In order to cleanup the environment from previous run and then bring up the fabric network, node application and front-end application, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh restart
    ```
 
-2. Cleanup the blockchain network using the following command:
+# Troubleshooting
+1. During node application (restapi container), if any access denied error is observed during service discovery as shown below:
    ```
-   minifab cleanup
+   error: [DiscoveryResultsProcessor]: parseDiscoveryResults[defaultchannel] - Channel:defaultchannel received discovery error:access denied
+   ```
+Take down the restapi container and bring back the restapi container using the following command:
+   ```
+   ./network-nft-auction.sh app-down
+   ./network-nft-auction.sh app-up
    ```
