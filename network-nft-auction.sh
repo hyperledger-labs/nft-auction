@@ -1,5 +1,19 @@
 #!/bin/bash
-## author: surya.lanka@chainyard.com
+#
+# Copyright IT People Corporation. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Contributors: Surya Lanka
+
+## This script is for bringing up fabric network using
+## minifab and node application, front-end application
+## as containers
+## Usage:
+## ./network-nft-auction.sh up for launching fabric network, restapi and ui
+## ./network-nft-auction.sh down for taking down fabric network, restapi and ui
+## ./network-nft-auction.sh app-up for launching restapi and ui
+## ./network-nft-auction.sh app-down for taking down restapi and ui
+## ./network-nft-auction.sh restart for restarting fabric network, restapi and ui
+
 which minifab
 rc=$?
 if [ $rc -ne 0 ];

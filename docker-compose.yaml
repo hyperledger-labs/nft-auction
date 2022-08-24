@@ -1,3 +1,7 @@
+# Copyright IT People Corporation. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Contributors: Surya Lanka
+---
 version: '2.1'
 
 networks:

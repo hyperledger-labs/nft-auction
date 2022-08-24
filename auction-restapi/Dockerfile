@@ -1,3 +1,7 @@
+#
+# Copyright IT People Corporation. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Contributors: Surya Lanka
 FROM node:14.19.3
 
 ARG USR=node

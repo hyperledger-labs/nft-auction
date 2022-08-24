@@ -108,7 +108,7 @@ In order to cleanup the environment from previous run and then bring up the fabr
    ```
    error: [DiscoveryResultsProcessor]: parseDiscoveryResults[defaultchannel] - Channel:defaultchannel received discovery error:access denied
    ```
-Take down the restapi container and bring back the restapi container using the following command:
+   Take down the restapi container and bring back the restapi container using the following command:
    ```
    ./network-nft-auction.sh app-down
    ./network-nft-auction.sh app-up
