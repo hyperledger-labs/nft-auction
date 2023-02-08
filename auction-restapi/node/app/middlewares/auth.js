@@ -20,12 +20,12 @@ var authenticate = function (req, res, next) {
     logger.debug(util.format('Request url : - %s ', req.originalUrl));
     let routes = ['user/login', 'user/register', 'api-docs', 'api-spec']
     if (appUtil.isPathUnprotected(req.originalUrl, routes)) {
-        logger.debug("indexOf unportecetd routes was found !!! ");
+        logger.debug("indexOf unprotected routes was found !!! ");
         return next();
     }
     // check header or url parameters or post parameters for token
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
-    // decode token
+    // if token is there... then adding decoded values from jwt token to the request body
     if (token) {
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
