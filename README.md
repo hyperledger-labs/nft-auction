@@ -1,3 +1,7 @@
+![Status Badge](https://img.shields.io/badge/Status-archived-red)
+
+**NOTE:** This lab has been archived and is no longer being maintained.
+
 # nft-auction
 NFT Auction application lets user to create NFTs and auction them off to other users in a marketplace model using Hyperledger Fabric.
 
