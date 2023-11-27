@@ -1,0 +1,29 @@
+# Copyright IT People Corporation. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Contributors: Surya Lanka
+---
+version: '2.1'
+
+networks:
+  test:
+    name: fabric_test
+
+services:
+  restapi:
+    container_name: restapi
+    image: auction-restapi:latest
+    working_dir: /opt/api
+    volumes:
+        - ./network/local/network-config:/opt/api/network/local/network-config
+    ports:
+      - "3001:3001"
+    networks:
+      - test
+  ui:
+    container_name: ui
+    image: auction-ui:latest
+    working_dir: /opt/ui
+    ports:
+      - "3000:3000"
+    networks:
+      - test

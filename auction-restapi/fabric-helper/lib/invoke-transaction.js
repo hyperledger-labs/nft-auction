@@ -40,7 +40,7 @@ var invokeTransaction = async function (channelName, chaincodeName, args,
 	let connectionOptions = {
 		identity: "admin",
 		wallet: wallet,
-		discovery: { enabled: true, asLocalhost: true }
+		discovery: { enabled: true, asLocalhost: false }
 	};
 	const gateway = new Gateway();
 	try {

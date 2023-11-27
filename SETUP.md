@@ -5,51 +5,6 @@ To successfully run the application, you will need several dependencies installe
 If not already installed, you will need to install Node.js, Go, make, curl, jq, Git, Docker, and Docker-Compose on your Ubuntu system. 
 Use the steps in each section below to properly install them.
 
-## Install Node.js
-Recommended version - 14.x
-Node.js can be installed either directly or using nvm (node version manager). Follow the below steps to install it using nvm.
-
-### Install nvm
-Note: 
-Check if bashrc file exists using `ls ~/.bashrc`. If it does not exist, add the file using `touch ~/.bashrc`.
-Check if profile file(current user) exists using `ls ~/.profile`. If it does not exist, add the file using `touch ~/.profile`.
-
-For ubuntu:
-```
-sudo apt-get install build-essential libssl-dev -y
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-source ~/.bashrc
-source ~/.profile
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-```
-### Install required Node.js version
-```
-nvm install 14
-nvm use 14
-```
-
-## Install Golang
-The smart contracts we use are written in Go. Follow the below steps to install it. Version 1.16 is recommended.
-For ubuntu:
-```
-wget https://dl.google.com/go/go1.16.5.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf  go1.16.5.linux-amd64.tar.gz
-```
-Check if .profile file exists(for a current user installation) using `ls ~/.profile`. If it does not exist, add the file using `touch ~/.profile`.
-Open the file using vi editor
-`vi ~/.profile`
-Append the following line
-`export PATH=$PATH:/usr/local/go/bin`
-Source the profile
-`source ~/.profile`
-Check if go is installed
-`go version`
-
-**Troubleshooting note**: If you have "permission denied" error in untarring the file, please make sure to have correct ownership of directories, or you may want to use `sudo` for the untar. 
-For more details or troubleshooting, see https://golang.org/doc/install
-
 ## Install Git
 For ubuntu:
 ```
@@ -108,25 +63,53 @@ After the prerequisites are installed, follow the below instructions to start th
 
 1. Download or Clone the code repo.
 
-2. Open a terminal from the root directory of the code repo and run the blockchain network using the following commands: 
+2. Open a terminal from the root directory of the code repo and run the blockchain network and application using the following commands: 
     ```
-    cd auction-restapi/network/local
-    ./start.sh
+    ./network-nft-auction.sh up
     ``` 
-    The script will stand up a simple Fabric network. The network has two peer organizations with two peer each and a single node raft ordering service
+    The script will stand up a simple Fabric network, node application (restapi container) and front-end application (ui container). The network has two peer organizations with two peer each and a single node raft ordering service.
 
-3. After the blockchain network setup is complete, start the Node.js backend server using the following commands:
-    ```
-    cd auction-restapi/node
-    npm install
-    npm start
-    ```
     The node application should now be up and running on `localhost:3001`.
 
-4. Open another terminal from the root directory of the code repo and start the UI application using the following commands:
-    ```
-    cd auction-ui
-    npm install
-    npm start
-    ```
-    The front-end application should now be up and running. The app can be now accessed from a web browser @`localhost:3000`. 
+    The front-end application should now be up and running. The app can be now accessed from a web browser @`localhost:3000`.
+
+### NOTE: 
+Make sure to check restapi container logs after each start using the following command:
+   ```
+   docker logs -f restapi
+   ```
+If any error related to service discovery with access denied is observed, refer Troubleshooting guide.
+
+# Stopping and Cleaning up the application and blockchain
+
+1. Stop node application, front-end application and removing fabric network from root directory using the following command from root directory:
+   ```
+   ./network-nft-auction.sh down
+   ```
+# Other options that are supported by the network-nft-auction.sh script
+### app-up:
+In order to bring up node application (restapi container) and front-end application (ui container) after the fabric network is up and running, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh app-up
+   ```
+### app-down:
+In order to bring down node application (restapi container) and front-end application (ui container) leaving the fabric network up and running, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh app-down
+   ```
+### restart:
+In order to cleanup the environment from previous run and then bring up the fabric network, node application and front-end application, use the following command from root directory:
+   ```
+   ./network-nft-auction.sh restart
+   ```
+
+# Troubleshooting
+1. During node application (restapi container), if any access denied error is observed during service discovery as shown below:
+   ```
+   error: [DiscoveryResultsProcessor]: parseDiscoveryResults[defaultchannel] - Channel:defaultchannel received discovery error:access denied
+   ```
+   Take down the restapi container and bring back the restapi container using the following command:
+   ```
+   ./network-nft-auction.sh app-down
+   ./network-nft-auction.sh app-up
+   ```
